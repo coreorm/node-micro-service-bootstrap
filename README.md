@@ -4,9 +4,11 @@ A bootstrap for simple micro-services powered by NodeJS. It's a monolithic aggre
 
 It's already heroku compatible and can be deployed with forever on your own server stack as well.
 
+Source: [https://github.com/coreorm/node-micro-service-bootstrap](https://github.com/coreorm/node-micro-service-bootstrap)
+
 ## Quick start
 
-### installation
+### Installation
 
 ```
 npm install mocha forever -g
@@ -14,19 +16,19 @@ npm install
 ```
 
 
-### create your own service.
+### Create your own service.
 
 All web service packages are under `./services`, in the following structure:
 
 ```
 services
-└── default
+└── my-service
     └── index.js
 ```
 
 Just follow the default service structure and add your own service. For details, see below *Service How-to* section
 
-### start the server
+### Start the server
 
 `node index.js [options]`
 
@@ -37,14 +39,6 @@ node index.js -e local -s my-service -v
 
 Or run `node index.js -h` to see the man page for more details on the allowed options.
 
-## globals
-
-| name | description | example/comment |
-|---|---|---|
-| `_CONF` | configuration object | `_CONF.env` |
-|`_PATH_ROOT`|root path| `require(_PATH_ROOT + 'header.js')` |
-|`_PATH_LIB`|library path| points to `./lib/` |
-| `_LIB` | custom library object | Libraries can be registered in different environments, see *Environment How-to* for more details |
 
 ## How-to
 
@@ -58,6 +52,26 @@ APP.get('/', function(req, res) {
 });
 ```
 For more details, check [express](https://expressjs.com/) website.
+
+#### JSON API response maker.
+
+This bootstrap includes a very easy to use JSON response maker, the output format is: 
+```
+{
+  "data": <Object or string>,
+  "message": <String message>,
+  "success": <Boolean true|false>,
+  "code": <INT 200-500>,
+  "size": <INT size of data in bytes>,
+  "time": <TIMESTAMP milliseconds>
+}
+```
+
+To use it, simple use the two apis: 
+- for successful JSON output: `_LIB.util.response.success(data, message, code)`
+- for erroneous JSON output: `_LIB.util.response.error(error, code)`.
+
+Details see [./services/default/index.js](https://github.com/coreorm/node-micro-service-bootstrap/blob/master/services/default/index.js).
 
 ### Environment How-to
 
@@ -91,21 +105,31 @@ Library files should be placed inside ./lib, following the structure:
 ```
 lib
 ├── README.md
-├── foo         // package
-│   ├── foo1.js
-│   └── foo2.js
-├── foo.js      // package header - use it to include package files
+├── package-name         // package
+│   ├── file1.js
+│   └── file2.js
+├── package-name.js      // package header - use it to include package files
 ```
 
-### Test How-to
 
 
+## Unit Tests
 
-### Debug How-to
+Simple run `npm run test`. All tests are under `./tests` folder. Follow `exampleTest.js` to write your own tests.
 
-Pass `x-debug-enabled=true` in the header to enable debug output (NOT supported in production mode), use the `UTIL.debug` object to log/dump variables when necessary
 
-### Logging How-to
+### Appendix
+
+#### Globals
+
+| name | description | example/comment |
+|---|---|---|
+| `_CONF` | configuration object | `_CONF.env` |
+|`_PATH_ROOT`|root path| `require(_PATH_ROOT + 'header.js')` |
+|`_PATH_LIB`|library path| points to `./lib/` |
+| `_LIB` | custom library object | Libraries can be registered in different environments, see *Environment How-to* for more details |
+
+#### Logging
 
 Use `_log(section, data, level = INFO|ERROR|SUCCESS|...)` to log (this will format it into logstash friendly message structure) 
 - section is where your code runs (e.g. 'service:foo', or a filename)
@@ -119,6 +143,13 @@ Default GROK syntax:
 \[(?<datetime>.+)\] (?<level>[\w]+) "(?<section>[^"]+)" DATA<(?<data>.+)>$
 ```
 
-### Verbose output How-to
+#### Verbose output
 
 Simply use `_v(section, data)` to log out the verbose output. This will remain hidden unless the app is run with `-v` or `--verbose`.
+
+
+#### Debug
+
+- use the `UTIL.debug` object to log/dump variables - NOTE it will only work when debug is enabled.
+- Pass `x-debug-enabled=true` in the header to enable debug output (NOT supported in production mode). 
+

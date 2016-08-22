@@ -45,3 +45,18 @@ APP.get('/', function (req, res) {
   </html>
   `);
 });
+
+/**
+ * example apis
+ */
+APP.get('/example/:action', function (req, res) {
+  const example = _LIB.example;
+  const action = req.params.action;
+
+  try {
+    const callback = _LIB.example[action];
+    res.send(_LIB.util.response.success(callback('hello world'), `action ${action} success`));
+  } catch (e) {
+    res.send(_LIB.util.response.error(e));
+  }
+});
