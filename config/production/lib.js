@@ -3,4 +3,4 @@
  */
 'use strict';
 
-_LIB.utlity = _LIB.add('util');
+_LIB.utlity = require(_PATH_LIB + 'util');;

@@ -7,5 +7,6 @@
 // include header
 require('./header');
 
-// config
-console.log(_CONF, _LIB);
+// verbose
+_v('env', _CONF.env);
+_v('config', _CONF);

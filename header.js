@@ -6,21 +6,13 @@
 // paths
 const path = require('path');
 global._PATH_ROOT = path.resolve(__dirname) + '/';
-global._PATH_LIB = _PATH_ROOT + 'lib/';
+global._PATH_LIB = path.resolve(__dirname) + '/lib/';
 // configuration
 global._CONF = {};
 // shared library (custom)
-global._LIB = {
-  add(file) {
-    return require(_PATH_LIB + file);
-  }
-};
+global._LIB = {};
 // utilities
-global._UTIL = {
-  add(file) {
-    return require(_PATH_LIB + file);
-  }
-};
+global._UTIL = {};
 
 // configurations
 const cla = require('command-line-args');
@@ -107,10 +99,9 @@ try {
 }
 
 _CONF.verbose = getEnv('verbose', false);
-
 let services = getEnv('service-name', 'default');
 _CONF.services = services.split(',');
-
+_CONF.port = getEnv('port', 8080);
 _CONF.timeout = getEnv('timeout', 1000);  // default 1 second timeout
 
 // custom lib loader
