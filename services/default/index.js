@@ -56,8 +56,17 @@ APP.get('/example/:action', function (req, res) {
   // callback and use response maker
   try {
     const callback = _LIB.example[action];
+    _log('EXAMPLE', {
+      action: action,
+      callback: callback,
+      params: req.params
+    });
     response = _LIB.util.response.success(callback('hello world'), `action ${action} success`);
   } catch (e) {
+    _log('EXAMPLE', {
+      action: action,
+      error: e.toString()
+    }, 'ERROR');
     response = _LIB.util.response.error(e);
   }
   // return response
