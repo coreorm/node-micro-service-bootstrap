@@ -1,0 +1,37 @@
+{
+  "name": "node-micro-service-bootstrap",
+  "version": "1.0.0",
+  "description": "A bootstrap for micro services based on node",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha tests/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://coreorm@github.com/coreorm/node-micro-service-bootstrap.git"
+  },
+  "keywords": [
+    "nodejs",
+    "micro",
+    "service",
+    "distributed",
+    "service",
+    "bootstrap"
+  ],
+  "author": "Bruce Beibei Li",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/coreorm/node-micro-service-bootstrap/issues"
+  },
+  "homepage": "https://github.com/coreorm/node-micro-service-bootstrap#readme",
+  "dependencies": {
+    "command-line-args": "^3.0.1",
+    "command-line-usage": "^3.0.3",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.0.2"
+  }
+}
