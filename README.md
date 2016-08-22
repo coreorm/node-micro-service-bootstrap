@@ -71,7 +71,7 @@ To use it, simple use the two apis:
 - for successful JSON output: `_LIB.util.response.success(data, message, code)`
 - for erroneous JSON output: `_LIB.util.response.error(error, code)`.
 
-Details see [./services/default/index.js](https://github.com/coreorm/node-micro-service-bootstrap/blob/master/services/default/index.js).
+Details see [./services/default/index.js](https://github.com/coreorm/node-micro-service-bootstrap/blob/master/services/default/index.js#L52).
 
 ### Environment How-to
 

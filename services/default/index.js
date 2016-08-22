@@ -52,11 +52,14 @@ APP.get('/', function (req, res) {
 APP.get('/example/:action', function (req, res) {
   const example = _LIB.example;
   const action = req.params.action;
-
+  let response = {};
+  // callback and use response maker
   try {
     const callback = _LIB.example[action];
-    res.send(_LIB.util.response.success(callback('hello world'), `action ${action} success`));
+    response = _LIB.util.response.success(callback('hello world'), `action ${action} success`);
   } catch (e) {
-    res.send(_LIB.util.response.error(e));
+    response = _LIB.util.response.error(e);
   }
+  // return response
+  res.send(response);
 });
