@@ -6,6 +6,13 @@ It's already heroku compatible and can be deployed with forever on your own serv
 
 Source: [https://github.com/coreorm/node-micro-service-bootstrap](https://github.com/coreorm/node-micro-service-bootstrap)
 
+Heroku App Example: [https://glacial-mountain-78419.herokuapp.com/](https://glacial-mountain-78419.herokuapp.com/).
+
+Example APIs:
+- [ping](https://glacial-mountain-78419.herokuapp.com/ping)
+- [example: foo](https://glacial-mountain-78419.herokuapp.com/example/foo)
+- [example: bar](https://glacial-mountain-78419.herokuapp.com/example/bar)
+
 ## Quick start
 
 ### Installation
