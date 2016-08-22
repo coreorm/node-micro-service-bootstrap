@@ -27,7 +27,7 @@ const def = [
     name: 'port',
     alias: 'p',
     type: Number,
-    description: 'App port'
+    description: 'App port, default to 8080, can also be set by PORT from commandline'
   },
   {
     name: 'service-name',
@@ -46,6 +46,12 @@ const def = [
     alias: 't',
     type: Number,
     description: 'time out for express api'
+  },
+  {
+    name: 'help',
+    alias: 'h',
+    type: Boolean,
+    description: 'Help / Man Page'
   }
 ];
 
@@ -71,6 +77,11 @@ try {
   console.error('Error parsing options: ' + e.toString());
   console.log(usage);
   process.exit(1);
+}
+
+if (opts.help === true) {
+  console.log(usage);
+  process.exit(0);
 }
 
 /**
@@ -101,7 +112,7 @@ try {
 _CONF.verbose = getEnv('verbose', false);
 let services = getEnv('service-name', 'default');
 _CONF.services = services.split(',');
-_CONF.port = getEnv('port', 8080);
+_CONF.port = getEnv('port', process.env.PORT ? process.env.PORT : 8080);
 _CONF.timeout = getEnv('timeout', 1000);  // default 1 second timeout
 
 // custom lib loader

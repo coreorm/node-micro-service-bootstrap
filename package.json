@@ -25,10 +25,12 @@
   },
   "homepage": "https://github.com/coreorm/node-micro-service-bootstrap#readme",
   "dependencies": {
+    "body-parser": "^1.15.2",
     "command-line-args": "^3.0.1",
     "command-line-usage": "^3.0.3",
-    "body-parser": "^1.15.2",
-    "express": "^4.14.0"
+    "express": "^4.14.0",
+    "markdown-to-html": "0.0.11",
+    "marked": "^0.3.6"
   },
   "devDependencies": {
     "chai": "^3.5.0",

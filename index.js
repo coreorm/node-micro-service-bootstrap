@@ -7,6 +7,29 @@
 // include header
 require('./header');
 
+const fs = require('fs');
+
+require('./server');
+// load modules when necessary
+if (_CONF.services) {
+  _CONF.services.map(function (item) {
+    _v(`load service`, item);
+    let path = `${_PATH_ROOT}services/${item}/index.js`;
+    try {
+      fs.accessSync(path, fs.F_OK);
+      require(path);
+    } catch (e) {
+      _log('load service', `path: ${path} not found`, 'ERROR');
+    }
+  });
+}
+
+// start server here
+APP.startServer(function(server) {
+  _log('SERVER', 'server listens to port ' + server.address().port);
+});
+
 // verbose
 _v('env', _CONF.env);
 _v('config', _CONF);
+_v('lib', _LIB);
