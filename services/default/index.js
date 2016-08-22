@@ -5,6 +5,7 @@
 'use strict';
 const marked = require('marked');
 const fs = require('fs');
+require(_PATH_LIB + 'example');
 
 APP.get('/', function (req, res) {
   let file = _PATH_ROOT + 'README.md';
