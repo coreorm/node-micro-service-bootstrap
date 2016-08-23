@@ -78,7 +78,7 @@ global._v = function (message, obj) {
   }
 };
 
-['create', 'init-service', 'start-service', 'stop-service', 'log', 'help'].forEach(function (item) {
+['create', 'add-service', 'start-service', 'stop-service', 'log', 'help'].forEach(function (item) {
   actionParser(item, function (params) {
     require('./actions/' + item)(params);
   });

@@ -10,6 +10,11 @@ module.exports = function() {
       'run `microservice-bootstrap create -h` for more details.'
     },
     {
+      header: 'add-service',
+      content: 'add new service module in specified location \n' +
+      'run `microservice-bootstrap add-service -h` for more details.'
+    },
+    {
       header: 'start',
       content: 'start service \n' +
       'run `microservice-bootstrap start -h` for more details.'
@@ -18,11 +23,6 @@ module.exports = function() {
       header: 'stop',
       content: 'stop service \n' +
       'run `microservice-bootstrap stop -h` for more details.'
-    },
-    {
-      header: 'log',
-      content: 'check service log\n' +
-      'run `microservice-bootstrap log -h` for more details.'
     },
     {
       header: 'help',
