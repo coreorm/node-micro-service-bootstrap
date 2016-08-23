@@ -63,7 +63,6 @@ APP.get('/example/:action', function (req, res) {
       callback: callback,
       params: req.params
     });
-
     response = _LIB.util.response.success(callback('hello world'), `action ${action} success`);
 
     // log success example
@@ -77,6 +76,9 @@ APP.get('/example/:action', function (req, res) {
 
     response = _LIB.util.response.error(e);
   }
+  setTimeout(function() {
+    res.send(response);
+  }, 10);
   // return response
-  res.send(response);
+
 });

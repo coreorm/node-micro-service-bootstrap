@@ -33,6 +33,18 @@ const preProcessor = (req, res, next) => {
 };
 APP.use(preProcessor);
 
+// timeout
+const Timeout = require('connect-timeout');
+const haltOnTimedout = function (req, res, next) {
+  if (!req.timedout) {
+    next();
+  }
+};
+
+APP.use(Timeout(_CONF.timeout));
+APP.use(haltOnTimedout);
+
+
 // by default the app server will parse JSON from body
 let bodyParser = require('body-parser');
 APP.use(bodyParser.json());

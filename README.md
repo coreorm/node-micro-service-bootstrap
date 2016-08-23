@@ -15,6 +15,10 @@ Example APIs:
 
 ## Quick start
 
+### Install from NPM
+
+`npm install -g simple-micro-service`
+
 ### Installation
 
 ```
