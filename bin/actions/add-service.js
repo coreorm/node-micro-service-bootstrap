@@ -69,7 +69,7 @@ module.exports = function (params) {
 
   global._verbose = opts.verbose === true;
 
-  _v('create project');
+  _v('Add services');
   _v('opts', opts);
   _v('params', params);
 

@@ -1,6 +1,6 @@
 {
   "name": "node-micro-service-bootstrap",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A bootstrap for micro services based on node",
   "main": "index.js",
   "scripts": {
@@ -32,6 +32,7 @@
     "connect-timeout": "^1.7.0",
     "express": "^4.14.0",
     "extfs": "0.0.7",
+    "forever-monitor": "^1.7.0",
     "github-download": "^0.5.0",
     "markdown-to-html": "0.0.11",
     "marked": "^0.3.6",

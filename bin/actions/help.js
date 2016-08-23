@@ -15,14 +15,9 @@ module.exports = function() {
       'run `microservice-bootstrap add-service -h` for more details.'
     },
     {
-      header: 'start',
-      content: 'start service \n' +
+      header: 'run',
+      content: 'start service(s) \n' +
       'run `microservice-bootstrap start -h` for more details.'
-    },
-    {
-      header: 'stop',
-      content: 'stop service \n' +
-      'run `microservice-bootstrap stop -h` for more details.'
     },
     {
       header: 'help',

@@ -14,76 +14,6 @@ global._LIB = {};
 // utilities
 global._UTIL = {};
 
-// configurations
-const cla = require('command-line-args');
-const def = [
-  {
-    name: 'verbose',
-    alias: 'v',
-    type: Boolean,
-    description: 'Verbose mode'
-  },
-  {
-    name: 'port',
-    alias: 'p',
-    type: Number,
-    description: 'App port, default to 8080, can also be set by PORT from commandline'
-  },
-  {
-    name: 'service-name',
-    alias: 's',
-    type: String,
-    description: 'Service name(s), use comma separated string for multiple services'
-  },
-  {
-    name: 'environment',
-    alias: 'e',
-    type: String,
-    description: 'app environment, can also be set by NODE_ENV from commandline'
-  },
-  {
-    name: 'timeout',
-    alias: 't',
-    type: Number,
-    description: 'time out for express api'
-  },
-  {
-    name: 'help',
-    alias: 'h',
-    type: Boolean,
-    description: 'Help / Man Page'
-  }
-];
-
-const getUsage = require('command-line-usage');
-
-const sections = [
-  {
-    header: 'Micro Service Bootstrap',
-    content: 'Please read the full README.md for more details'
-  },
-  {
-    header: 'Options',
-    optionList: def
-  }
-];
-const usage = getUsage(sections)
-let opts = [];
-
-try {
-  opts = cla(def);
-} catch (e) {
-  // invalid options
-  console.error('Error parsing options: ' + e.toString());
-  console.log(usage);
-  process.exit(1);
-}
-
-if (opts.help === true) {
-  console.log(usage);
-  process.exit(0);
-}
-
 /**
  * get default value
  * @param key
@@ -91,14 +21,14 @@ if (opts.help === true) {
  * @returns {*}
  */
 const getEnv = (key, defaultValue) => {
-  if (opts[key]) {
-    return opts[key];
+  if (process.env[key]) {
+    return process.env[key];
   }
   return defaultValue;
 };
 
 // app environment
-const env = getEnv('environment', process.env.NODE_ENV ? process.env.NODE_ENV : 'local');
+const env = getEnv('environment', 'local');
 
 // include config and expose to global
 try {
@@ -109,11 +39,11 @@ try {
   process.exit(1);
 }
 
-_CONF.verbose = getEnv('verbose', false);
-let services = getEnv('service-name', 'default');
+_CONF.verbose = getEnv('VERBOSE', false);
+let services = getEnv('SERVICE_NAME', 'default');
 _CONF.services = services.split(',');
-_CONF.port = getEnv('port', process.env.PORT ? process.env.PORT : 8080);
-_CONF.timeout = getEnv('timeout', 1000);  // default 1 second timeout
+_CONF.port = getEnv('PORT', 8080);
+_CONF.timeout = getEnv('TIMEOUT', 1000);  // default 1 second timeout
 
 // custom lib loader
 require(`./config/${env}/lib.js`);

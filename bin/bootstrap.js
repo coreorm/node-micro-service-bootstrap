@@ -97,7 +97,7 @@ global.spin = function (shouldSpin) {
 };
 
 
-actionParser(['create', 'add-service', 'start-service', 'stop-service', 'log', 'help'], function (item, params) {
+actionParser(['create', 'add-service', 'run', 'help'], function (item, params) {
   require('./actions/' + item)(params);
 }, function () {
   require('./actions/help')();
