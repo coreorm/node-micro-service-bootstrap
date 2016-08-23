@@ -6,10 +6,12 @@ const getUsage = require('command-line-usage');
 
 /**
  * action parser
+ *
  * @param action
  * @param callback
+ * @param callbackHelp
  */
-const actionParser = function (action, callback) {
+const actionParser = function (action, callback, callbackHelp) {
   let params = [];
   let cnt = 0;
   let isValid = false;
@@ -29,6 +31,9 @@ const actionParser = function (action, callback) {
   });
   if (cnt >= 1) {
     callback(params);
+  } else {
+    // invalid, call help
+    callbackHelp();
   }
 };
 
@@ -92,6 +97,9 @@ global.spin = function (shouldSpin) {
 ['create', 'add-service', 'start-service', 'stop-service', 'log', 'help'].forEach(function (item) {
   actionParser(item, function (params) {
     require('./actions/' + item)(params);
+  }, function () {
+    require('./actions/help')();
+    process.exit(0);
   });
 });
 
