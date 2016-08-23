@@ -1,10 +1,8 @@
 # Micro Service Bootstrap for NodeJS
 
-A bootstrap for simple micro-services powered by NodeJS. It's a monolithic aggregation of all micro services written in NodeJS. 
+Microservice Bootstrap as a commandline tool (alternatively, you can also clone from [https://github.com/coreorm/node-micro-service-bootstrap](https://github.com/coreorm/node-micro-service-bootstrap) and add your own service manually).
 
-It's already heroku compatible and can be deployed with forever on your own server stack as well.
-
-Source: [https://github.com/coreorm/node-micro-service-bootstrap](https://github.com/coreorm/node-micro-service-bootstrap)
+It takes all the boring chores away, while putting the fun part to the very service / API you need to write. 
 
 Heroku App Example: [https://glacial-mountain-78419.herokuapp.com/](https://glacial-mountain-78419.herokuapp.com/).
 
@@ -43,6 +41,8 @@ microservice-bootstrap add-service service-name1,service-name2...
 
 By default, it will expose `GET /my-service` api.
 
+For more details, run `microservice-bootstrap add-service -h`.
+
 
 ### Start the server
 
@@ -53,7 +53,7 @@ e.g.
 microservice-bootstrap run -e local -s my-service -v
 ```
 
-Or run `microservice-bootstrap -h` to see the man page for more details on the allowed options.
+Or run `microservice-bootstrap run -h` to see the man page for more details on the allowed options.
 
 ## How-to
 
@@ -66,6 +66,9 @@ APP.get('/', function(req, res) {
     res.send('hello world!');
 });
 ```
+
+If you have added services using the CLI tool, a default GET /[service name] is already added for you.
+
 For more details, check [express](https://expressjs.com/) website.
 
 #### JSON API response maker.
