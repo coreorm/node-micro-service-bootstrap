@@ -10,6 +10,7 @@ Example APIs:
 - [ping](https://glacial-mountain-78419.herokuapp.com/ping)
 - [example: foo](https://glacial-mountain-78419.herokuapp.com/example/foo)
 - [example: bar](https://glacial-mountain-78419.herokuapp.com/example/bar)
+- [example: foo with debug info](https://glacial-mountain-78419.herokuapp.com/example/foo?x-debug-enabled=true)
 
 ## Quick start
 

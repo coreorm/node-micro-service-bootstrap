@@ -106,7 +106,8 @@ module.exports = function (params) {
   });
 
   child.on('start', function (process, data) {
-    console.log(`Process started, PID <${data.pid}>, LogFile: ${data.logFile}. CTRL+C to terminate this process.`);
+    console.log(`Process started, PID <${data.pid}>, LogFile: ${opts.log}.
+    > Press CTRL+C to terminate this process.\n`);
   });
 
   child.start();

@@ -17,6 +17,7 @@ if (_CONF.services) {
     let path = `${_PATH_ROOT}services/${item}/index.js`;
     try {
       require(path);
+      _debug('service loaded: ' + item);
     } catch (e) {
       _log('load service', `path: ${path} not found ${e.message}`, 'ERROR');
       process.exit(1);

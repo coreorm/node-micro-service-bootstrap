@@ -28,6 +28,13 @@ const preProcessor = (req, res, next) => {
     }
   }
 
+  if (_CONF.debug === true) {
+    // set to debug
+    _dump('request params', req.params);
+    _dump('request query', req.query);
+    _dump('request body', req.body);
+  }
+
   // continue
   next();
 };
