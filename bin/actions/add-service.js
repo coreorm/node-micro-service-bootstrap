@@ -53,7 +53,7 @@ const serviceTmp = `/**
  * a success example
  */
 APP.get('/{service}', function (req, res) {
-  let json = _LIB.util.response.success('{service} is online', 'success');
+  let json = _LIB.util.response.success('{service} is online', \`Edit \${__dirname}/index.js to change this api.\`);
   res.send(json);
   // a failure example
   // let jsonErr = _LIB.util.response.error(new Error('my error'));
