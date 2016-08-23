@@ -65,7 +65,7 @@ module.exports = function (params) {
   let opts = optsParser(def, sections);
   global._verbose = opts.verbose === true;
   let envVars = {
-    VERBOSE : JSON.stringify(global._verbose)
+    VERBOSE: JSON.stringify(global._verbose)
 
   };
   if (typeof opts['service-name'] === 'string') {
@@ -77,38 +77,33 @@ module.exports = function (params) {
   if (opts.timeout) {
     envVars.TIMEOUT = opts.timeout;
   }
+  if (opts.environment) {
+    envVars.NODE_ENV = opts.environment;
+  }
 
   console.log('Run project\n');
-  _v('Environment variables', envVars);
+  console.log('Environment variables', envVars);
 
   const forever = require('forever-monitor');
 
-  // get args out
-  let args = process.argv.join(' ');
-  args = args.split(' run ');
-  if (typeof args[1] === 'string') {
-    let cnf = {
-      max: 3,
-      silent: false,
-      args: args[1].split(' '),
-      env: envVars
-    };
-    let child = new (forever.Monitor)('index.js', cnf);
+  let cnf = {
+    max: 3,
+    silent: false,
+    env: envVars
+  };
+  let child = new (forever.Monitor)('index.js', cnf);
 
-    child.on('exit', function () {
-      console.log('index.js has exited after 3 restarts');
-    });
+  child.on('exit', function () {
+    console.log('index.js has exited after 3 restarts');
+  });
 
-    child.on('error', function (err) {
-      console.error(err);
-    });
+  child.on('error', function (err) {
+    console.error(err);
+  });
 
-    child.on('start', function(process, data) {
-      console.log(`Process started, PID <${data.pid}>, LogFile: ${data.logFile}. CTRL+C to terminate this process.`);
-    });
+  child.on('start', function (process, data) {
+    console.log(`Process started, PID <${data.pid}>, LogFile: ${data.logFile}. CTRL+C to terminate this process.`);
+  });
 
-    child.start();
-  }
-
-
+  child.start();
 };

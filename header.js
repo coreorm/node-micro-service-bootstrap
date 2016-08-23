@@ -28,7 +28,7 @@ const getEnv = (key, defaultValue) => {
 };
 
 // app environment
-const env = getEnv('environment', 'local');
+const env = getEnv('NODE_ENV', 'local');
 
 // include config and expose to global
 try {
