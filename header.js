@@ -39,7 +39,7 @@ try {
   process.exit(1);
 }
 
-_CONF.verbose = getEnv('VERBOSE', false);
+_CONF.verbose = getEnv('VERBOSE', 'false') !== 'false';
 let services = getEnv('SERVICE_NAME', 'default');
 _CONF.services = services.split(',');
 _CONF.port = getEnv('PORT', 8080);
