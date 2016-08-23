@@ -83,8 +83,13 @@ module.exports = function (params) {
       process.exit(1);
     })
     .on('end', function () {
-      console.log(`download finished, files are stored in ${path}`);
-      spin(false);
+      console.log(`download finished, files are stored in ${path}. Now installing dependencies`);
+      const exec = require('child_process').exec;
+      const puts = function (error, stdout, stderr) {
+        spin(false);
+        console.log('Dependencies installed, you may go to ' + path + ' and start the service');
+      };
+      exec(`cd ${path}; npm install`, puts);
     })
 
 };
