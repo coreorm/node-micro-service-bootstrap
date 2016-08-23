@@ -50,7 +50,7 @@ By default, it will expose `GET /my-service` api.
 
 e.g.
 ```
-microservice-bootstrap -e local -s my-service -v
+microservice-bootstrap run -e local -s my-service -v
 ```
 
 Or run `microservice-bootstrap -h` to see the man page for more details on the allowed options.
