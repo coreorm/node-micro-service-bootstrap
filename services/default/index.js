@@ -51,7 +51,6 @@ APP.get('/', function (req, res) {
  * example apis
  */
 APP.get('/example/:action', function (req, res) {
-  const example = _LIB.example;
   const action = req.params.action;
   let response = {};
   // callback and use response maker
@@ -63,6 +62,14 @@ APP.get('/example/:action', function (req, res) {
       callback: callback,
       params: req.params
     });
+
+    // also add to debug information (so when debug is enabled, it will show up in json response)
+    _dump('REQUEST', {
+      action: action,
+      params: req.params,
+      queryString: req.query
+    });
+
     response = _LIB.util.response.success(callback('hello world'), `action ${action} success`);
 
     // log success example
