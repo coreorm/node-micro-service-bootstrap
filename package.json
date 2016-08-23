@@ -1,6 +1,6 @@
 {
-  "name": "node-micro-service-bootstrap",
-  "version": "1.0.2",
+  "name": "microservice-bootstrap",
+  "version": "1.0.4",
   "description": "A bootstrap for micro services based on node",
   "main": "index.js",
   "scripts": {

@@ -17,39 +17,43 @@ Example APIs:
 
 ### Install from NPM
 
-`npm install -g microservice-bootstrap`
-
-### Installation
-
+First, install the command
 ```
-npm install mocha forever -g
-npm install
+npm install -g microservice-bootstrap
 ```
 
+Then create your web service by running
+```
+microservice-bootstrap create -t path-to-myservice
+```
+
+Then wait patiently, it will install the service and all dependencies (Yes, you don't need to run npm install').
 
 ### Create your own service.
 
-All web service packages are under `./services`, in the following structure:
-
+Simply run
 ```
-services
-└── my-service
-    └── index.js
+microservice-bootstrap add-service my-service
 ```
 
-Just follow the default service structure and add your own service. For details, see below *Service How-to* section
+If you want to add more than one, just separate the names with comma (,).
+```
+microservice-bootstrap add-service service-name1,service-name2...
+```
+
+By default, it will expose `GET /my-service` api.
+
 
 ### Start the server
 
-`node index.js [options]`
+`microservice-bootstrap run [options]`
 
 e.g.
 ```
-node index.js -e local -s my-service -v
+microservice-bootstrap -e local -s my-service -v
 ```
 
-Or run `node index.js -h` to see the man page for more details on the allowed options.
-
+Or run `microservice-bootstrap -h` to see the man page for more details on the allowed options.
 
 ## How-to
 
@@ -139,6 +143,8 @@ Simple run `npm run test`. All tests are under `./tests` folder. Follow `example
 |`_PATH_ROOT`|root path| `require(_PATH_ROOT + 'header.js')` |
 |`_PATH_LIB`|library path| points to `./lib/` |
 | `_LIB` | custom library object | Libraries can be registered in different environments, see *Environment How-to* for more details |
+|`_log`|log function| see below logging section |
+|`_v`|verbose output function| see below verbose output section |
 
 #### Logging
 

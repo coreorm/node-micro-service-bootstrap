@@ -91,6 +91,10 @@ module.exports = function (params) {
     silent: false,
     env: envVars
   };
+  if (opts.log) {
+    cnf.outFile = opts.log;
+  }
+
   let child = new (forever.Monitor)('index.js', cnf);
 
   child.on('exit', function () {
