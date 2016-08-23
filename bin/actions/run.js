@@ -65,7 +65,7 @@ module.exports = function (params) {
   let opts = optsParser(def, sections);
   global._verbose = opts.verbose === true;
   let envVars = {
-    VERBOSE : global._verbose
+    VERBOSE : JSON.stringify(global._verbose)
 
   };
   if (typeof opts['service-name'] === 'string') {
