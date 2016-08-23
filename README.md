@@ -17,7 +17,7 @@ Example APIs:
 
 ### Install from NPM
 
-`npm install -g simple-micro-service`
+`npm install -g microservice-bootstrap`
 
 ### Installation
 
