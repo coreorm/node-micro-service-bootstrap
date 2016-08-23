@@ -10,7 +10,6 @@ Example APIs:
 - [ping](https://glacial-mountain-78419.herokuapp.com/ping)
 - [example: foo](https://glacial-mountain-78419.herokuapp.com/example/foo)
 - [example: bar](https://glacial-mountain-78419.herokuapp.com/example/bar)
-- [example: foo with debug info](https://glacial-mountain-78419.herokuapp.com/example/foo?x-debug-enabled=true)
 
 ## Quick start
 
@@ -169,8 +168,11 @@ Default GROK syntax:
 Simply use `_v(section, data)` to log out the verbose output. This will remain hidden unless the app is run with `-v` or `--verbose`.
 
 
-#### Debug
+#### Built-in Debug tool 
 
-- use the `UTIL.debug` object to log/dump variables - NOTE it will only work when debug is enabled.
-- Pass `x-debug-enabled=true` in the header to enable debug output (NOT supported in production mode). 
+NOTE: only supported when _CONF.debug = true;
+
+- `_dump(name, object)` to record objects in the debug information (returned from api)
+- `_debug(message)` to record debug messages (returned from api)
+- Pass `x-debug-enabled=1` in the header or add `?x-debug-enabled=1` in the query string to enable debug output (NOT supported in production mode). 
 
