@@ -2,7 +2,7 @@
 
 Microservice Bootstrap as a commandline tool (alternatively, you can also clone from [https://github.com/coreorm/node-micro-service-bootstrap](https://github.com/coreorm/node-micro-service-bootstrap) and add your own service manually).
 
-It takes all the boring chores away, while putting the fun part to the very service / API you need to write. 
+It takes all the boring chores away, while leaving the fun part to you: the very service / API you wanted. 
 
 Heroku App Example: [https://glacial-mountain-78419.herokuapp.com/](https://glacial-mountain-78419.herokuapp.com/).
 
