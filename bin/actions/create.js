@@ -15,7 +15,7 @@ const def = [
     name: 'target-directory',
     alias: 't',
     type: String,
-    description: 'Specify the directory where the project should reside.'
+    description: 'Specify the directory where the project should reside. Default is current directory'
   },
   {
     name: 'verbose',
@@ -59,23 +59,32 @@ module.exports = function (params) {
 
   // create by fetching from github
   const gd = require('github-download');
-  console.log('Downloading latest master from node-micro-service-bootstrap to ' + path);
+  // verify
+  const efs = require('extfs');
+  if (!efs.isEmptySync(path)) {
+    console.log('Error: the given path is not empty, please choose another path, or delete the existing one');
+    process.exit(1);
+  }
+  // start downloading
+  console.log('- Downloading latest master from node-micro-service-bootstrap to ' + path);
+  spin(true);
   gd({user: 'coreorm', repo: 'node-micro-service-bootstrap', ref: 'master'}, path)
     .on('dir', function (dir) {
-      console.log(dir)
+      _v.log(dir)
     })
     .on('file', function (file) {
-      console.log(file)
+      _v(file)
     })
     .on('zip', function (zipUrl) {
-      console.log(zipUrl)
+      _v(zipUrl)
     })
     .on('error', function (err) {
-      console.error(err)
+      console.log(err);
+      process.exit(1);
     })
     .on('end', function () {
-      _v(`download finished, files are stored in ${path}`);
+      console.log(`download finished, files are stored in ${path}`);
+      spin(false);
     })
-
 
 };

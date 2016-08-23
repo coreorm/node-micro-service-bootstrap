@@ -74,7 +74,18 @@ global._v = function (message, obj) {
     } else {
       obj = '';
     }
-    console.log(`${Date.now()} ${message} ${obj}`);
+    console.log(`\n > ${message} ${obj}`);
+  }
+};
+
+const Spinner = require('cli-spinner').Spinner;
+const spinner = new Spinner('%s ');
+
+global.spin = function (shouldSpin) {
+  if (shouldSpin === true) {
+    spinner.start();
+  } else {
+    spinner.stop(true);
   }
 };
 

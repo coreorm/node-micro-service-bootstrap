@@ -26,10 +26,12 @@
   "homepage": "https://github.com/coreorm/node-micro-service-bootstrap#readme",
   "dependencies": {
     "body-parser": "^1.15.2",
+    "cli-spinner": "^0.2.5",
     "command-line-args": "^3.0.1",
     "command-line-usage": "^3.0.3",
     "connect-timeout": "^1.7.0",
     "express": "^4.14.0",
+    "extfs": "0.0.7",
     "github-download": "^0.5.0",
     "markdown-to-html": "0.0.11",
     "marked": "^0.3.6",

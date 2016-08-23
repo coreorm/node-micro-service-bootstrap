@@ -16,10 +16,10 @@ if (_CONF.services) {
     _v(`load service`, item);
     let path = `${_PATH_ROOT}services/${item}/index.js`;
     try {
-      fs.accessSync(path, fs.F_OK);
       require(path);
     } catch (e) {
-      _log('load service', `path: ${path} not found`, 'ERROR');
+      _log('load service', `path: ${path} not found ${e.message}`, 'ERROR');
+      process.exit(1);
     }
   });
 }
