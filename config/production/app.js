@@ -5,7 +5,7 @@
 
 let env = 'production';
 
-let debug = false;
+let debug = true;
 
 /**
  * config object
