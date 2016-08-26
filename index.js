@@ -4,6 +4,29 @@
  */
 'use strict';
 
+const cluster = require('cluster');
+
+global._isMaster = cluster.isMaster;
+global._isWorker = cluster.isWorker;
+
+if (_isMaster) {
+  var numWorkers = require('os').cpus().length;
+  for (var i = 0; i < numWorkers; i++) {
+    cluster.fork();
+  }
+
+  cluster.on('online', function (worker) {
+    console.log('Worker ' + worker.process.pid + ' is online');
+  });
+
+  cluster.on('exit', function (worker, code, signal) {
+    // restart worker
+    cluster.fork();
+  });
+  // stop here - nothing should happen in master
+  return;
+}
+
 // include header
 require('./header');
 
